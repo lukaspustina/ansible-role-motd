@@ -1,0 +1,7 @@
+---
+_motd:
+  services:
+    command: 'service @@NAME@@ status'
+    services:
+      - apache2
+

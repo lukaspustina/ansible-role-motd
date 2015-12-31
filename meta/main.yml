@@ -1,0 +1,12 @@
+galaxy_info:
+  author: Lukas Pustina
+  description: Dynamic motd
+  license: GPL
+  min_ansible_version: 1.9
+  platforms:
+  - name: Debian
+      versions:
+        - jessie
+  galaxy_tags:
+    - system
+

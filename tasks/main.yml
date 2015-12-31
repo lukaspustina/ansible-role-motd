@@ -1,0 +1,26 @@
+---
+
+- name: Install figlet
+  apt: name=figlet state=present
+
+- name: Fix Debian Jessie PAM sshd_config
+  # BUG: session    optional     pam_motd.so  motd=/run/motd.dynamic
+  # FIX: session    optional     pam_motd.so  motd=/run/motd.new
+  lineinfile: dest=/etc/pam.d/sshd regexp="motd=/run/motd.dynamic" line="session optional pam_motd.so motd=/run/motd.new"
+  when: ansible_distribution == "Debian"
+
+- name: Remove static MOTD file
+  file: path=/etc/motd state=absent
+
+- name: Link MOTD file
+  file: src=/var/run/motd dest=/etc/motd state=link owner=root group=root mode=0755
+
+- name: Create MOTD Configuration Directory
+  file: path=/etc/update-motd.d state=directory owner=root group=root mode=0755
+
+- name: Copy Default MOTD Generator Script
+  copy: src=etc/update-motd.d/10-default dest=/etc/update-motd.d/10-default owner=root group=root mode=0755
+
+- name: Create Service Listing MOTD Generator Script
+  template: src=etc/update-motd.d/20-services.j2 dest=/etc/update-motd.d/20-services owner=root group=root mode=0755
+

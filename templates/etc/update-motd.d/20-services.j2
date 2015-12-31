@@ -1,0 +1,10 @@
+#!/bin/bash
+
+{% if _motd.services is defined %}
+Services
+{% for name in _motd.services.services %}
+{{ _motd.services.command|replace("@@NAME@@", name) }}
+{% endfor %}
+echo
+{% endif %}
+
