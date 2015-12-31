@@ -1,7 +1,7 @@
 motd
 =========
 
-Creates a ynamic motd.
+Creates a dynamic motd.
 
 Example:
 ```
