@@ -5,8 +5,8 @@ galaxy_info:
   min_ansible_version: 1.9
   platforms:
   - name: Debian
-      versions:
-        - jessie
+    versions:
+      - jessie
   galaxy_tags:
     - system
 
